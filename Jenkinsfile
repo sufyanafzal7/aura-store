@@ -6,8 +6,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/sufyanafzal7/aura-store.git'
-      }
+    git branch: 'main', url: 'https://github.com/sufyanafzal7/aura-store.git'
+  }
     }
     stage('Build Docker Image') {
       steps {
