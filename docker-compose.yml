@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    image: sufyanafzal7/aura-store:latest
+    container_name: aura-web
+    ports:
+      - "3000:5173"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/aura_store
+  web2:
+    image: sufyanafzal7/aura-store:latest
+    container_name: aura-web2
+    ports:
+      - "4000:5173"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/aura_store
+
+
+  db:
+    image: postgres:15
+    container_name: aura-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: aura_store
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:
